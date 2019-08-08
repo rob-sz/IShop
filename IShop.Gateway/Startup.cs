@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using IShop.Gateway.Controllers;
 using IShop.Common.Dispatching.Extensions;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace IShop.Gateway
 {
@@ -21,6 +22,11 @@ namespace IShop.Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "IShop.Gateway", Version = "v1" });
+            });
 
             services.AddQueryDispatcher<CustomersController>("customer-service");
             //services.AddQueryDispatcher<OrdersController>("order-service");
@@ -42,6 +48,16 @@ namespace IShop.Gateway
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "IShop.Gateway");
+            });
         }
     }
 }
