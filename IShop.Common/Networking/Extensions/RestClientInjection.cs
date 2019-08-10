@@ -10,25 +10,10 @@ namespace IShop.Common.Networking.Extensions
     {
         private static string ConfigurationSectionName = "RestClient";
 
-        public static IServiceCollection AddRestClient(
+        public static IHttpClientBuilder AddHttpClientForService(
             this IServiceCollection services, string serviceName)
         {
-            ConfigureRestClient(services, serviceName);
-
-            return services.AddTransient(
-                serviceProvider => serviceProvider.GetRestClient(serviceName));
-        }
-
-        public static IRestClient GetRestClient(
-            this IServiceProvider serviceProvider, string serviceName)
-        {
-            return new RestClient(
-                serviceProvider.GetService<IHttpClientFactory>().CreateClient(serviceName));
-        }
-
-        private static void ConfigureRestClient(IServiceCollection services, string serviceName)
-        {
-            services.AddHttpClient(serviceName, client =>
+            return services.AddHttpClient(serviceName, httpClient =>
             {
                 var restClientSettings = GetRestClientSettings(services);
                 var serviceSettings = restClientSettings.Services.SingleOrDefault(
@@ -39,13 +24,20 @@ namespace IShop.Common.Networking.Extensions
                         $"Service '{serviceName}' settings not found.", serviceName);
                 }
 
-                client.BaseAddress = new UriBuilder
+                httpClient.BaseAddress = new UriBuilder
                 {
                     Scheme = serviceSettings.Type,
                     Host = serviceSettings.Host,
                     Port = serviceSettings.Port
                 }.Uri;
             });
+        }
+
+        public static IRestClient CreateRestClient(this IServiceProvider serviceProvider, string serviceName)
+        {
+            return new RestClient(
+                serviceProvider.GetService<IHttpClientFactory>().CreateClient(serviceName),
+                serviceName);
         }
 
         private static RestClientSettings GetRestClientSettings(IServiceCollection services)

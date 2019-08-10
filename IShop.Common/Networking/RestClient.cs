@@ -1,40 +1,42 @@
-﻿using IShop.Common.Dispatching;
-using Microsoft.AspNetCore.Routing.Template;
-using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace IShop.Common.Networking
 {
     public class RestClient : IRestClient
     {
+        private readonly Regex uriTokenRegex = new Regex(@"(?<=\{)[^}]*(?=\})");
         private readonly HttpClient httpClient;
+        public string ServiceName { get; }
 
-        public RestClient(HttpClient httpClient)
+        public RestClient(HttpClient httpClient, string serviceName)
         {
             this.httpClient = httpClient;
+            ServiceName = serviceName;
         }
 
         public async Task<TResult> GetAsync<TResult>(
-            string requestUri, params object[] requestUriValues)
+            string requestUri, dynamic requestModel)
         {
-            var routeTemplate = TemplateParser.Parse(requestUri);
-            if (routeTemplate.Parameters.Count != requestUriValues.Length)
-                throw new ArgumentException("Request URI parameters do not match values.");
+            var requestUriBuilder = new StringBuilder();
+            var requestModelType = requestModel.GetType();
 
-            var resultUri = new StringBuilder(requestUri);
-            for (int i = 0; i < routeTemplate.Parameters.Count; i++)
+            foreach (Match match in uriTokenRegex.Matches(requestUri))
             {
-                resultUri.Replace(
-                    string.Format("{{{0}}}", routeTemplate.Parameters[i].Name),
-                    WebUtility.UrlEncode(requestUriValues[i].ToString()));
+                var tokenName = match.Value;
+                var tokenValue = requestModelType.GetProperty(tokenName).GetValue(requestModel);
+                requestUriBuilder.Replace(
+                    string.Format("{{{0}}}", tokenName),
+                    WebUtility.UrlEncode(tokenValue.ToString()));
             }
-            requestUri = resultUri.ToString();
 
-            var response = await httpClient.GetAsync(requestUri);
-            return await response.Content.ReadAsAsync<TResult>();
+            // todo! think about how to handle errors or null content here
+
+            var result = await httpClient.GetAsync(requestUriBuilder.ToString());
+            return await result.Content.ReadAsAsync<TResult>();
         }
     }
 }

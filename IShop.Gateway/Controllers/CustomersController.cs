@@ -19,7 +19,7 @@ namespace IShop.Gateway.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
-            => SingleResult(await queryDispatcher.Dispatch<Customer>("{id}", id));
+            => SingleResult(await queryDispatcher.Dispatch<Customer>("{id}", new { id }));
 
         // POST api/values
         //[HttpPost]
