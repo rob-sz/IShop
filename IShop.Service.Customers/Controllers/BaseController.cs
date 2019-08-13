@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace IShop.Service.Customer.Controllers
+namespace IShop.Service.Customers.Controllers
 {
     public class BaseController : ControllerBase
     {

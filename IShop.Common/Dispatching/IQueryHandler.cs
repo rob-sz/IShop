@@ -2,7 +2,7 @@
 
 namespace IShop.Common.Dispatching
 {
-    public interface IRequestHandler<TRequest, TResult>
+    public interface IQueryHandler<TRequest, TResult>
     {
         Task<TResult> HandleAsync(TRequest request);
     }

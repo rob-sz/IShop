@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IShop.Common.Dispatching;
+using IShop.Common.Mongo.Extensions;
+using IShop.Service.Customers.Domain.Model;
+using IShop.Service.Customers.Handler.Query;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using System;
 
-namespace IShop.Service.Order
+namespace IShop.Service.Customers
 {
     public class Startup
     {
@@ -26,6 +24,13 @@ namespace IShop.Service.Order
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services
+                .AddMongoDb("customer-service")
+                .AddMongoDbRepository<Customer>();
+
+            // configure request handlers
+            services.AddSingleton<IQueryHandler<Guid, Customer>, GetCustomerHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

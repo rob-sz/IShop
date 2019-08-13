@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <RootNamespace>IShop.Service.Customers</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,11 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IShop.Common.Mongo\IShop.Common.Mongo.csproj" />
     <ProjectReference Include="..\IShop.Common\IShop.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\" />
+    <Folder Include="Handlers\Command\" />
   </ItemGroup>
 
 </Project>

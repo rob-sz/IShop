@@ -15,7 +15,7 @@ namespace IShop.Common.Dispatching
 
         public async Task<TResult> Delegate<TRequest, TResult>(TRequest request)
             => await serviceProvider
-                .GetService<IRequestHandler<TRequest, TResult>>()
+                .GetService<IQueryHandler<TRequest, TResult>>()
                 .HandleAsync(request);
     }
 }

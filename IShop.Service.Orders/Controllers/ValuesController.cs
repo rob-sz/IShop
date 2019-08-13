@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IShop.Service.Order.Controllers
+namespace IShop.Service.Orders.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

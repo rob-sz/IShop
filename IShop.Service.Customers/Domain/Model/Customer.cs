@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IShop.Service.Customer.Model
+namespace IShop.Service.Customers.Domain.Model
 {
     public class Customer
     {

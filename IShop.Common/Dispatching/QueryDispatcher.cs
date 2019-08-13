@@ -13,7 +13,7 @@ namespace IShop.Common.Dispatching
             this.restClient = restClient;
         }
 
-        public async Task<TResult> Dispatch<TResult>(string requestUri, dynamic requestModel)
+        public async Task<TResult> DispatchAsync<TResult>(string requestUri, dynamic requestModel)
             => await restClient.GetAsync<TResult>(requestUri, requestModel);
     }
 }

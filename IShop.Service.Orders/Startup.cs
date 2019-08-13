@@ -1,13 +1,10 @@
-﻿using IShop.Common.Dispatching;
-using IShop.Service.Customer.Handler;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
-namespace IShop.Service.Customer
+namespace IShop.Service.Orders
 {
     public class Startup
     {
@@ -22,9 +19,6 @@ namespace IShop.Service.Customer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            // configure request handlers
-            services.AddSingleton<IRequestHandler<Guid, Model.Customer>, GetCustomerHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
