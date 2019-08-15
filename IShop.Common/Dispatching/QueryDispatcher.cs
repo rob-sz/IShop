@@ -6,7 +6,7 @@ namespace IShop.Common.Dispatching
     public class QueryDispatcher<TSender> 
         : IQueryDispatcher<TSender> where TSender : class
     {
-        private IRestClient restClient;
+        private readonly IRestClient restClient;
 
         public QueryDispatcher(IRestClient restClient)
         {

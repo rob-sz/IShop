@@ -1,8 +1,9 @@
-﻿using System;
+﻿using IShop.Common.Domain.Model;
+using System;
 
 namespace IShop.Service.Customers.Domain.Model
 {
-    public class Customer
+    public class Customer : IAggregateRoot
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }

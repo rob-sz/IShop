@@ -10,7 +10,7 @@ namespace IShop.Service.Customers.Controllers
     [ApiController]
     public class CustomersController : BaseController
     {
-        private IRequestDelegator requestDelegator;
+        private readonly IRequestDelegator requestDelegator;
 
         public CustomersController(IRequestDelegator requestDelegator)
         {
@@ -19,6 +19,6 @@ namespace IShop.Service.Customers.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
-            => SingleResult(await requestDelegator.Delegate<Guid, Customer>(id));
+            => SingleResult(await requestDelegator.DelegateAsync<Guid, Customer>(id));
     }
 }

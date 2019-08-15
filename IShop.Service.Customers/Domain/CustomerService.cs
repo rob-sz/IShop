@@ -7,7 +7,7 @@ namespace IShop.Service.Customers.Domain
 {
     public class CustomerService : ICustomerService
     {
-        private IMongoDbRepository<Customer> customerRepository;
+        private readonly IMongoDbRepository<Customer> customerRepository;
 
         public CustomerService(IMongoDbRepository<Customer> customerRepository)
         {

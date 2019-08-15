@@ -8,7 +8,7 @@ namespace IShop.Service.Customers.Handler.Query
 {
     public class GetCustomerHandler : IQueryHandler<Guid, Customer>
     {
-        private ICustomerService customerService;
+        private readonly ICustomerService customerService;
 
         public GetCustomerHandler(ICustomerService customerService)
         {

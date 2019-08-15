@@ -6,14 +6,14 @@ namespace IShop.Common.Dispatching
 {
     public class RequestDelegator : IRequestDelegator
     {
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
 
         public RequestDelegator(IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;
         }
 
-        public async Task<TResult> Delegate<TRequest, TResult>(TRequest request)
+        public async Task<TResult> DelegateAsync<TRequest, TResult>(TRequest request)
             => await serviceProvider
                 .GetService<IQueryHandler<TRequest, TResult>>()
                 .HandleAsync(request);

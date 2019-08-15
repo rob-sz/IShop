@@ -4,6 +4,6 @@ namespace IShop.Common.Dispatching
 {
     public interface IRequestDelegator
     {
-        Task<TResult> Delegate<TRequest, TResult>(TRequest request);
+        Task<TResult> DelegateAsync<TRequest, TResult>(TRequest request);
     }
 }

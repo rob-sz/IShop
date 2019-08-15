@@ -31,6 +31,9 @@ namespace IShop.Gateway
             services.AddQueryDispatcher<CustomersController>("customer-service");
             //services.AddQueryDispatcher<OrdersController>("order-service");
             //services.AddQueryDispatcher<ProductsController>("product-service");
+
+            // todo! add command dispatchers
+            // todo! add binding for IMessageBusClient to NoQueue, add NoQueueInjection method
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
