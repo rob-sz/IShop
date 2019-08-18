@@ -16,5 +16,8 @@ namespace IShop.Service.Customers.Domain
 
         public async Task<Customer> GetCustomerAsync(Guid id)
             => await customerRepository.GetAsync(customer => customer.Id == id);
+
+        public async Task CreateCustomerAsync(Customer customer)
+            => await customerRepository.CreateAsync(customer);
     }
 }

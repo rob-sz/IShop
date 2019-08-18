@@ -5,6 +5,7 @@ using IShop.Common.Messaging.Query;
 using IShop.Common.Mongo.Extensions;
 using IShop.Service.Customers.Domain.Model;
 using IShop.Service.Customers.Handler.Query;
+using IShop.Service.Customers.Messages.Query;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +37,7 @@ namespace IShop.Service.Customers
             services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
 
             // configure query handlers
-            services.AddSingleton<IQueryHandler<Guid, Customer>, GetCustomerHandler>();
+            services.AddSingleton<IQueryHandler<GetCustomerQuery, GetCustomerResult>, GetCustomerHandler>();
 
             // configure command dispatchers
             services.AddSingleton<ICommandDispatcher, CommandDispatcher>();

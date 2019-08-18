@@ -1,12 +1,11 @@
 ﻿using IShop.Common.Messaging.Query;
 using IShop.Service.Customers.Domain;
-using IShop.Service.Customers.Domain.Model;
-using System;
+using IShop.Service.Customers.Messages.Query;
 using System.Threading.Tasks;
 
 namespace IShop.Service.Customers.Handler.Query
 {
-    public class GetCustomerHandler : IQueryHandler<Guid, Customer>
+    public class GetCustomerHandler : IQueryHandler<GetCustomerQuery, GetCustomerResult>
     {
         private readonly ICustomerService customerService;
 
@@ -15,7 +14,17 @@ namespace IShop.Service.Customers.Handler.Query
             this.customerService = customerService;
         }
 
-        public async Task<Customer> HandleAsync(Guid id)
-            => await customerService.GetCustomerAsync(id);
+        public async Task<GetCustomerResult> HandleAsync(GetCustomerQuery query)
+        {
+            var customer = await customerService.GetCustomerAsync(query.Id);
+
+            return new GetCustomerResult
+            {
+                Id = customer.Id,
+                Email = customer.Email,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName
+            };
+        }
     }
 }

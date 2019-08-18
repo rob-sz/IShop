@@ -7,5 +7,6 @@ namespace IShop.Service.Customers.Domain
     public interface ICustomerService
     {
         Task<Customer> GetCustomerAsync(Guid id);
+        Task CreateCustomerAsync(Customer customer);
     }
 }

@@ -16,5 +16,8 @@ namespace IShop.Common.Mongo
 
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
             => await Collection.Find(predicate).SingleOrDefaultAsync();
+
+        public async Task CreateAsync(TEntity entity)
+            => await Collection.InsertOneAsync(entity);
     }
 }
