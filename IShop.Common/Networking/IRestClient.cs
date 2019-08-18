@@ -6,5 +6,6 @@ namespace IShop.Common.Networking
     {
         string ServiceName { get; }
         Task<T> GetAsync<T>(string requestUri, dynamic requestModel);
+        Task SendAsync<TRequest>(string requestUri, TRequest requestModel);
     }
 }

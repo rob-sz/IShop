@@ -1,4 +1,4 @@
-﻿using IShop.Common.Dispatching;
+﻿using IShop.Common.Messaging.Query;
 using IShop.Service.Customers.Domain;
 using IShop.Service.Customers.Domain.Model;
 using System;

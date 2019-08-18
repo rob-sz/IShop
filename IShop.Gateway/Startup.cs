@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using IShop.Common.Messaging.Extensions;
+using IShop.Gateway.Controllers;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using IShop.Gateway.Controllers;
-using IShop.Common.Dispatching.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace IShop.Gateway
@@ -28,12 +28,10 @@ namespace IShop.Gateway
                 c.SwaggerDoc("v1", new Info { Title = "IShop.Gateway", Version = "v1" });
             });
 
-            services.AddQueryDispatcher<CustomersController>("customer-service");
-            //services.AddQueryDispatcher<OrdersController>("order-service");
-            //services.AddQueryDispatcher<ProductsController>("product-service");
-
-            // todo! add command dispatchers
-            // todo! add binding for IMessageBusClient to NoQueue, add NoQueueInjection method
+            // configure service brokers
+            services.AddServiceBroker<CustomersController>("customer-service");
+            //services.AddServiceBroker<OrdersController>("order-service");
+            //services.AddServiceBroker<ProductsController>("product-service");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

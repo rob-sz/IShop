@@ -1,20 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IShop.Common.Messaging;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace IShop.Service.Customers.Controllers
 {
     public class BaseController : ControllerBase
     {
-        protected IActionResult SingleResult<T>(T model)
+        protected ICorrelationContext CommandContext
         {
-            if (model != null)
-                return Ok(model);
+            get
+            {
+                return new CorrelationContext
+                {
+                    CorrelationId = Guid.NewGuid(),
+                    CorrelationDate = DateTime.UtcNow,
+                    TraceIdentifier = HttpContext.TraceIdentifier,
+                    ResourcePath = Request.Path.ToString()
+                };
+            }
+        }
+
+        protected IActionResult SingleResult<T>(T result)
+        {
+            if (result != null)
+                return Ok(result);
 
             return NotFound();
         }
 
-        protected IActionResult AcceptedResult<T>(T context)
+        protected IActionResult AcceptedResult()
         {
-            return Accepted(context);
+            return Accepted();
+        }
+
+        protected IActionResult AcceptedResult<T>(T result)
+        {
+            return Accepted(result);
         }
     }
 }

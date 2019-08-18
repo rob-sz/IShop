@@ -1,6 +1,6 @@
 ﻿namespace IShop.Common.Messaging
 {
-    public interface IMessageCorrelationContext
+    public interface ICorrelationContext
     {
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Newtonsoft.Json;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -37,6 +38,12 @@ namespace IShop.Common.Networking
 
             var result = await httpClient.GetAsync(requestUriBuilder.ToString());
             return await result.Content.ReadAsAsync<TResult>();
+        }
+
+        public async Task SendAsync<TRequest>(string requestUri, TRequest requestModel)
+        {
+            await httpClient.PostAsync(requestUri, new StringContent(
+                JsonConvert.SerializeObject(requestModel), Encoding.UTF8, "application/json"));
         }
     }
 }

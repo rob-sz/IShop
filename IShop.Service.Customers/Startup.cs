@@ -1,4 +1,7 @@
-﻿using IShop.Common.Dispatching;
+﻿using IShop.Common.Messaging.Bus;
+using IShop.Common.Messaging.Bus.NoQueue;
+using IShop.Common.Messaging.Command;
+using IShop.Common.Messaging.Query;
 using IShop.Common.Mongo.Extensions;
 using IShop.Service.Customers.Domain.Model;
 using IShop.Service.Customers.Handler.Query;
@@ -29,8 +32,19 @@ namespace IShop.Service.Customers
                 .AddMongoDb("customer-service")
                 .AddMongoDbRepository<Customer>();
 
-            // configure request handlers
+            // configure query dispatchers
+            services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
+
+            // configure query handlers
             services.AddSingleton<IQueryHandler<Guid, Customer>, GetCustomerHandler>();
+
+            // configure command dispatchers
+            services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
+
+            // configure command handlers
+
+            // configure messaging bus
+            services.AddSingleton<IMessageBusClient, NoQueueBusClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

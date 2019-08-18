@@ -16,8 +16,4 @@
     <ProjectReference Include="..\IShop.Common\IShop.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Handlers\Command\" />
-  </ItemGroup>
-
 </Project>
