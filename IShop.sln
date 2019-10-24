@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IShop.Service.Products", "IShop.Service.Products", "{3248F95A-3BB9-453B-B496-C0553C6138D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IShop.Service.Products", "IShop.Service.Products\IShop.Service.Products.csproj", "{FC0FFD7E-2EFE-4C88-BA97-CCA8DBF84B05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IShop.Service.Products", "IShop.Service.Products\IShop.Service.Products.csproj", "{FC0FFD7E-2EFE-4C88-BA97-CCA8DBF84B05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
