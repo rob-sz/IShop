@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IShop.Service.Customers", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IShop.Service.Orders", "IShop.Service.Orders", "{E37271B2-1CAF-46EB-BE7E-6F55124E7CE8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IShop", "IShop", "{89DEB71E-B2BD-4EFA-9F26-D4C99F4E4CCF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IShop.Gateway", "IShop.Gateway\IShop.Gateway.csproj", "{DA028008-A2E6-40AE-9269-2ED1743FA248}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IShop.Service.Customers", "IShop.Service.Customers\IShop.Service.Customers.csproj", "{06052011-6EF9-46F4-BF8F-2566B53ABCDC}"
