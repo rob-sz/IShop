@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace IShop.Service.Customers.Controllers
+namespace IShop.Common.Mvc.Controllers
 {
     public class BaseController : ControllerBase
     {
