@@ -2,8 +2,9 @@
 
 namespace IShop.Service.Products.Messages.Query
 {
-    public class GetProductsByCategoryQuery : IQuery
+    public class GetProductSearchQuery : IQuery
     {
         public string Category { get; set; }
+        public string Keyword { get; set; }
     }
 }

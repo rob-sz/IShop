@@ -4,6 +4,6 @@ namespace IShop.Common.Messaging.Query
 {
     public interface IQueryDispatcher
     {
-        Task<TResult> DispatchAsync<TResult>(IQuery query);
+        Task<TResult> DispatchAsync<TResult>(IQuery query) where TResult : IQueryResult;
     }
 }

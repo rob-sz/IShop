@@ -2,7 +2,7 @@
 
 namespace IShop.Service.Products.Messages.Query
 {
-    public class GetCategoriesQuery : IQuery
+    public class GetProductCategoriesQuery : IQuery
     {
     }
 }

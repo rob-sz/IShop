@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace IShop.Service.Products.Handlers.Query
 {
-    public class GetCategoriesHandler 
-        : IQueryHandler<GetProductCategoriesQuery, GetProductCategoriesResult>
+    public class GetProductSearchHandler
+        : IQueryHandler<GetProductSearchQuery, GetProductSearchResult>
     {
-        public async Task<GetProductCategoriesResult> HandleAsync(GetProductCategoriesQuery query)
+        public async Task<GetProductSearchResult> HandleAsync(GetProductSearchQuery query)
         {
             throw new NotImplementedException();
         }

@@ -30,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IShop.Service.Products", "I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IShop.Service.Products", "IShop.Service.Products\IShop.Service.Products.csproj", "{FC0FFD7E-2EFE-4C88-BA97-CCA8DBF84B05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IShop", "IShop\IShop.csproj", "{2B543EDB-D40D-4BF5-A218-143EE27777AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IShop", "IShop\IShop.csproj", "{2B543EDB-D40D-4BF5-A218-143EE27777AF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IShop", "IShop", "{0BE703F7-2E11-46EC-B370-B6B86FA2E728}"
 EndProject

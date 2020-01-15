@@ -26,7 +26,7 @@ namespace IShop.Service.Customers.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync([FromRoute] GetCustomerQuery query)
-            => SingleResult(await queryDispatcher.DispatchAsync<Customer>(query));
+            => SingleResult(await queryDispatcher.DispatchAsync<GetCustomerResult>(query));
 
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] CreateCustomerCommand command)

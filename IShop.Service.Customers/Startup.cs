@@ -42,7 +42,7 @@ namespace IShop.Service.Customers
             services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
 
             // configure query handlers
-            services.AddSingleton<IQueryHandler<GetCustomerQuery, Customer>, GetCustomerHandler>();
+            services.AddSingleton<IQueryHandler<GetCustomerQuery, GetCustomerResult>, GetCustomerHandler>();
 
             // configure command dispatchers
             services.AddSingleton<ICommandDispatcher, CommandDispatcher>();

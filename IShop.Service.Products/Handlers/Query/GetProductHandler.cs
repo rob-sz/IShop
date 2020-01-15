@@ -1,17 +1,28 @@
 ﻿using IShop.Common.Messaging.Query;
-using IShop.Service.Products.Domain.Model;
 using IShop.Service.Products.Messages.Query;
-using System;
+using IShop.Service.Products.Persistence;
 using System.Threading.Tasks;
 
 namespace IShop.Service.Products.Handlers.Query
 {
     public class GetProductHandler
-        : IQueryHandler<GetProductQuery, Product>
+        : IQueryHandler<GetProductQuery, GetProductResult>
     {
-        public Task<Product> HandleAsync(GetProductQuery query)
+        private readonly IProductRepository repository;
+
+        public GetProductHandler(IProductRepository repository)
         {
-            throw new NotImplementedException();
+            this.repository = repository;
+        }
+
+        public async Task<GetProductResult> HandleAsync(GetProductQuery query)
+        {
+            var result = new GetProductResult
+            {
+                Product = await repository.GetAsync(query.Id)
+            };
+
+            return result;
         }
     }
 }

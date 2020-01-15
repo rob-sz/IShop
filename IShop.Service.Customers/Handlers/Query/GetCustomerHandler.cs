@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace IShop.Service.Customers.Handler.Query
 {
     public class GetCustomerHandler 
-        : IQueryHandler<GetCustomerQuery, Customer>
+        : IQueryHandler<GetCustomerQuery, GetCustomerResult>
     {
         private readonly ICustomerService customerService;
 
@@ -16,17 +16,18 @@ namespace IShop.Service.Customers.Handler.Query
             this.customerService = customerService;
         }
 
-        public async Task<Customer> HandleAsync(GetCustomerQuery query)
+        public async Task<GetCustomerResult> HandleAsync(GetCustomerQuery query)
         {
             var customer = await customerService.GetCustomerAsync(query.Id);
 
-            return new Customer
+            return new GetCustomerResult(); // todo! map customer to result
+            /*return new Customer
             {
                 Id = customer.Id,
                 Email = customer.Email,
                 FirstName = customer.FirstName,
                 LastName = customer.LastName
-            };
+            };*/
         }
     }
 }

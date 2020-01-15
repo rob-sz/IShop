@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using IShop.Common.Messaging.Query;
 using IShop.Common.Mvc.Controllers;
-using IShop.Service.Products.Domain.Model;
 using IShop.Service.Products.Messages.Query;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,18 +18,17 @@ namespace IShop.Service.Products.Controllers
             this.queryDispatcher = queryDispatcher;
         }
 
-        [HttpGet("categories")]
-        public async Task<IActionResult> GetAsync()
-            => SingleResult(
-                await queryDispatcher.DispatchAsync<IEnumerable<ProductCategory>>(
-                    null as GetCategoriesQuery));
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetAsync([FromRoute] GetProductQuery query)
+            => SingleResult(await queryDispatcher.DispatchAsync<GetProductResult>(query));
 
         [HttpGet()]
-        public async Task<IActionResult> GetAsync([FromQuery] GetProductsByCategoryQuery query)
-            => SingleResult(await queryDispatcher.DispatchAsync<IEnumerable<Product>>(query));
+        public async Task<IActionResult> GetAsync([FromQuery] GetProductSearchQuery query)
+            => SingleResult(await queryDispatcher.DispatchAsync<GetProductSearchResult>(query));
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync([FromRoute] GetProductQuery query)
-            => SingleResult(await queryDispatcher.DispatchAsync<Product>(query));
+        [HttpGet("Categories")]
+        public async Task<IActionResult> GetAsync()
+            => SingleResult(await queryDispatcher.DispatchAsync<GetProductCategoriesResult>(
+                    null as GetProductCategoriesQuery));
     }
 }

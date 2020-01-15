@@ -12,7 +12,8 @@ namespace IShop.Common.Messaging.Query
             this.serviceProvider = serviceProvider;
         }
 
-        public async Task<TResult> DispatchAsync<TResult>(IQuery query)
+        public async Task<TResult> DispatchAsync<TResult>(IQuery query) 
+            where TResult : IQueryResult
         {
             var queryHandlerType = typeof(IQueryHandler<,>)
                 .MakeGenericType(query.GetType(), typeof(TResult));
