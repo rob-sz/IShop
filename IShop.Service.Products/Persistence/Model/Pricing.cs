@@ -2,8 +2,8 @@
 {
     public class Pricing
     {
-        public decimal Price { get; private set; }
-        public decimal Freight { get; private set; }
-        public decimal Tax { get; private set; }
+        public decimal Price { get; set; }
+        public decimal Freight { get; set; }
+        public decimal Tax { get; set; }
     }
 }

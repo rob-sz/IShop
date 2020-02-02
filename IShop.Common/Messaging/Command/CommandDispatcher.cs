@@ -12,7 +12,8 @@ namespace IShop.Common.Messaging.Command
             this.messageBusClient = messageBusClient;
         }
 
-        public async Task DispatchAsync(ICommand command, ICorrelationContext context)
+        public async Task DispatchAsync<TCommand>(TCommand command, ICorrelationContext context)
+            where TCommand : ICommand
         {
             await messageBusClient.SendAsync(command, context);
         }

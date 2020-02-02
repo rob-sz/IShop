@@ -19,7 +19,7 @@ namespace IShop.Service.Products.Handlers.Query
         {
             var result = new GetProductResult
             {
-                Product = await repository.GetAsync(query.Id)
+                Product = await repository.GetProductAsync(query.Id)
             };
 
             return result;

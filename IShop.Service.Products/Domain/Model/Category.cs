@@ -1,8 +1,11 @@
-﻿namespace IShop.Service.Products.Domain.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace IShop.Service.Products.Domain.Model
 {
     public class Category
     {
-        public string Name { get; private set; }
-        public string Description { get; private set; }
+        [Required]
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

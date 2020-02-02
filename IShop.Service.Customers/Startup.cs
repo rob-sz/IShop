@@ -35,7 +35,7 @@ namespace IShop.Service.Customers
             });
 
             services
-                .AddMongoDb("customer-service")
+                .AddMongoDb("ishop-customers")
                 .AddMongoDbRepository<Customer>();
 
             // configure query dispatchers

@@ -22,7 +22,15 @@ namespace IShop.Common.Networking
         public async Task<TResult> GetAsync<TResult>(
             string requestUri, dynamic requestModel)
         {
-            var requestUriBuilder = new StringBuilder();
+            var result = await GetAsync(requestUri, requestModel);
+
+            return await result.Content.ReadAsAsync<TResult>();
+        }
+
+        public async Task<HttpResponseMessage> GetAsync(
+            string requestUri, dynamic requestModel)
+        {
+            var requestUriBuilder = new StringBuilder(requestUri);
             var requestModelType = requestModel.GetType();
 
             foreach (Match match in uriTokenRegex.Matches(requestUri))
@@ -36,8 +44,7 @@ namespace IShop.Common.Networking
 
             // todo! think about how to handle errors or null content here
 
-            var result = await httpClient.GetAsync(requestUriBuilder.ToString());
-            return await result.Content.ReadAsAsync<TResult>();
+            return await httpClient.GetAsync(requestUriBuilder.ToString());
         }
 
         public async Task SendAsync<TRequest>(string requestUri, TRequest requestModel)

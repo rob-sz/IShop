@@ -2,9 +2,9 @@
 {
     public class Dimensions
     {
-        public decimal Width { get; private set; }
-        public decimal Height { get; private set; }
-        public decimal Depth { get; private set; }
-        public decimal Weight { get; private set; }
+        public decimal Width { get; set; }
+        public decimal Height { get; set; }
+        public decimal Depth { get; set; }
+        public decimal Weight { get; set; }
     }
 }

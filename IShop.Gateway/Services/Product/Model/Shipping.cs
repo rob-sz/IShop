@@ -1,4 +1,4 @@
-﻿namespace IShop.Service.Products.Domain.Model
+﻿namespace IShop.Gateway.Services.Product.Model
 {
     public class Shipping
     {

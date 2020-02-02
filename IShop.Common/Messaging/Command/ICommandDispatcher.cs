@@ -4,6 +4,7 @@ namespace IShop.Common.Messaging.Command
 {
     public interface ICommandDispatcher
     {
-        Task DispatchAsync(ICommand command, ICorrelationContext context);
+        Task DispatchAsync<TCommand>(TCommand command, ICorrelationContext context) 
+            where TCommand : ICommand;
     }
 }

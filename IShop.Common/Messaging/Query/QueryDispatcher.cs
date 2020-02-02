@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Threading.Tasks;
 
 namespace IShop.Common.Messaging.Query
@@ -15,16 +16,19 @@ namespace IShop.Common.Messaging.Query
         public async Task<TResult> DispatchAsync<TResult>(IQuery query) 
             where TResult : IQueryResult
         {
-            var queryHandlerType = typeof(IQueryHandler<,>)
-                .MakeGenericType(query.GetType(), typeof(TResult));
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var queryHandlerType = typeof(IQueryHandler<,>)
+                    .MakeGenericType(query.GetType(), typeof(TResult));
 
-            var queryHandler =
-                serviceProvider.GetService(queryHandlerType)
-                    as IQueryHandler<IQuery, TResult>;
-            if (queryHandler == null)
-                throw new QueryHandlerNotFoundException(query);
+                dynamic queryHandler =
+                    scope.ServiceProvider.GetService(queryHandlerType);
 
-            return await queryHandler.HandleAsync(query);
+                if (queryHandler == null)
+                    throw new QueryHandlerNotFoundException(query);
+
+                return await queryHandler.HandleAsync((dynamic)query);
+            }
         }
     }
 }

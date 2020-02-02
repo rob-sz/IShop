@@ -1,6 +1,6 @@
-﻿namespace IShop.Service.Products.Domain.Model
+﻿namespace IShop.Gateway.Services.Product.Model
 {
-    public class Shipping
+    public class Dimensions
     {
         public decimal Width { get; set; }
         public decimal Height { get; set; }

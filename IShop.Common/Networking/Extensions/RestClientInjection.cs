@@ -28,7 +28,8 @@ namespace IShop.Common.Networking.Extensions
                 {
                     Scheme = serviceSettings.Type,
                     Host = serviceSettings.Host,
-                    Port = serviceSettings.Port
+                    Port = serviceSettings.Port,
+                    Path = serviceSettings.Path
                 }.Uri;
             });
         }

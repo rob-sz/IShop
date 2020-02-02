@@ -31,7 +31,7 @@ namespace IShop.Common.Mongo.Extensions
                     $"Database '{databaseName}' settings not found.", databaseName);
             }
 
-            services.AddScoped(
+            services.AddSingleton(
                 serviceProvider => new MongoClient(
                     databaseSettings.ConnectionString).GetDatabase(databaseName));
 
@@ -45,7 +45,7 @@ namespace IShop.Common.Mongo.Extensions
         public static IServiceCollection AddMongoDbRepository<TEntity>(
             this IServiceCollection services, string collectionName)
         {
-            services.AddScoped(
+            services.AddScoped<IMongoDbRepository<TEntity>>(
                 serviceProvider => new MongoDbRepository<TEntity>(
                     serviceProvider.GetService<IMongoDatabase>(), collectionName));
 

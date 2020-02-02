@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -16,6 +17,9 @@ namespace IShop.Common.Mongo
 
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
             => await Collection.Find(predicate).SingleOrDefaultAsync();
+
+        public async Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate)
+            => await Collection.Find(predicate).ToListAsync();
 
         public async Task CreateAsync(TEntity entity)
             => await Collection.InsertOneAsync(entity);

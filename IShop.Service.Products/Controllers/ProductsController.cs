@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
+using IShop.Common.Messaging.Command;
 using IShop.Common.Messaging.Query;
 using IShop.Common.Mvc.Controllers;
+using IShop.Service.Products.Messages.Command;
 using IShop.Service.Products.Messages.Query;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,11 +13,14 @@ namespace IShop.Service.Products.Controllers
     public class ProductsController : BaseController
     {
         private readonly IQueryDispatcher queryDispatcher;
+        private readonly ICommandDispatcher commandDispatcher;
 
         public ProductsController(
-            IQueryDispatcher queryDispatcher)
+            IQueryDispatcher queryDispatcher,
+            ICommandDispatcher commandDispatcher)
         {
             this.queryDispatcher = queryDispatcher;
+            this.commandDispatcher = commandDispatcher;
         }
 
         [HttpGet("{Id}")]
@@ -29,6 +34,13 @@ namespace IShop.Service.Products.Controllers
         [HttpGet("Categories")]
         public async Task<IActionResult> GetAsync()
             => SingleResult(await queryDispatcher.DispatchAsync<GetProductCategoriesResult>(
-                    null as GetProductCategoriesQuery));
+                    new GetProductCategoriesQuery()));
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody] CreateProductCommand command)
+        {
+            await commandDispatcher.DispatchAsync(command, CommandContext);
+            return AcceptedResult();
+        }
     }
 }

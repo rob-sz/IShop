@@ -29,9 +29,9 @@ namespace IShop.Gateway
             });
 
             // configure service brokers
-            services.AddServiceBroker<CustomersController>("customer-service");
+            //services.AddServiceBroker<CustomersController>("customer-service");
             //services.AddServiceBroker<OrdersController>("order-service");
-            //services.AddServiceBroker<ProductsController>("product-service");
+            services.AddServiceBroker<ProductsController>("product-service");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

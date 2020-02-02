@@ -9,6 +9,7 @@ namespace IShop.Common.Messaging.Extensions
             this IServiceCollection services, string serviceName) where TSender : class
         {
             services.AddHttpClientForService(serviceName);
+            services.AddTransient(serviceProvider => serviceProvider.CreateRestClient(serviceName));
 
             return services.AddSingleton<IServiceBroker<TSender>, ServiceBroker<TSender>>();
         }
