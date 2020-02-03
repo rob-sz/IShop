@@ -13,8 +13,8 @@ namespace IShop.Common.Messaging
             this.restClient = restClient;
         }
 
-        public async Task<TResult> ReceiveAsync<TResult>(string requestUri, dynamic requestModel)
-            => await restClient.GetAsync<TResult>(requestUri, requestModel);
+        public async Task<TResult> ReceiveAsync<TResult>(string requestUri, params object[] requestUriValues)
+            => await restClient.GetAsync<TResult>(requestUri, requestUriValues);
 
         public async Task SendAsync<TRequest>(string requestUri, TRequest requestModel)
             => await restClient.SendAsync(requestUri, requestModel);

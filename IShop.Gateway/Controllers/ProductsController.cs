@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using IShop.Common.Messaging;
 using IShop.Gateway.Services.Product.Model;
+using IShop.Gateway.Services.Product.Query;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IShop.Gateway.Controllers
@@ -19,7 +20,7 @@ namespace IShop.Gateway.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync(Guid id)
-            => SingleResult(await serviceBroker.ReceiveAsync<Product>("{id}", new { id }));
+            => SingleResult(await serviceBroker.ReceiveAsync<GetProductResult>("{0}", id));
 
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] Product entity)

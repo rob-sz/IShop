@@ -19,7 +19,7 @@ namespace IShop.Gateway.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync(Guid id)
-            => SingleResult(await serviceBroker.ReceiveAsync<Customer>("{id}", new { id }));
+            => SingleResult(await serviceBroker.ReceiveAsync<Customer>("{0}", id));
 
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] Customer customer)
