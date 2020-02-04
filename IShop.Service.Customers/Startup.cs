@@ -61,7 +61,8 @@ namespace IShop.Service.Customers
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // gateway uses http to call this service
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -79,7 +80,7 @@ namespace IShop.Service.Customers
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "IShop.Service.Customers");
+                c.SwaggerEndpoint("/swagger/customers/v1/swagger.json", "IShop.Service.Customers");
             });
         }
     }

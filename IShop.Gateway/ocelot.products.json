@@ -1,0 +1,34 @@
+﻿{
+  "ReRoutes": [
+    {
+      "UpstreamPathTemplate": "/swagger/Products/{all}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/swagger/{all}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5010
+        }
+      ],
+      "QoSOptions": {
+        "TimeoutValue": 360000
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/Products",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Products",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5010
+        }
+      ],
+      "QoSOptions": {
+        "TimeoutValue": 360000
+      }
+    }
+  ]
+}

@@ -35,7 +35,8 @@ namespace IShop.Service.Orders
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // gateway uses http to call this service
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -53,7 +54,7 @@ namespace IShop.Service.Orders
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "IShop.Service.Orders");
+                c.SwaggerEndpoint("/swagger/orders/v1/swagger.json", "IShop.Service.Orders");
             });
         }
     }

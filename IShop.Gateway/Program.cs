@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Ocelot.DependencyInjection;
 
 namespace IShop.Gateway
 {
@@ -14,7 +15,12 @@ namespace IShop.Gateway
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        .ConfigureAppConfiguration((hostingContext, configBuilder) =>
+                         {
+                             configBuilder.AddOcelot(hostingContext.HostingEnvironment);
+                         })
+                        .UseStartup<Startup>();
                 });
     }
 }

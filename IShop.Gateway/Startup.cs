@@ -1,11 +1,10 @@
-﻿using IShop.Common.Messaging.Extensions;
-using IShop.Gateway.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 
 namespace IShop.Gateway
 {
@@ -23,15 +22,7 @@ namespace IShop.Gateway
         {
             services.AddControllers();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "IShop.Gateway", Version = "v1" });
-            });
-
-            // configure service brokers
-            //services.AddServiceBroker<CustomersController>("customer-service");
-            //services.AddServiceBroker<OrdersController>("order-service");
-            services.AddServiceBroker<ProductsController>("product-service");
+            services.AddOcelot();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,15 +44,7 @@ namespace IShop.Gateway
                 endpoints.MapControllers();
             });
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "IShop.Gateway");
-            });
+            app.UseOcelot().Wait();
         }
     }
 }
