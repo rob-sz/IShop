@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using IShop.Common.Messaging.Command;
 using IShop.Common.Messaging.Query;
 using IShop.Common.Mvc.Controllers;
@@ -24,6 +25,7 @@ namespace IShop.Service.Products.Controllers
         }
 
         [HttpGet("{Id}")]
+        [ProducesResponseType(typeof(GetProductResult), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAsync([FromRoute] GetProductQuery query)
             => SingleResult(await queryDispatcher.DispatchAsync<GetProductResult>(query));
 

@@ -46,7 +46,8 @@ namespace IShop.Service.Products.Persistence
             }
 
             var persistenceModelList = predicate == null 
-                ? new List<Persistence.Model.Product>() : await repository.GetListAsync(predicate);
+                ? new List<Persistence.Model.Product>() 
+                : await repository.GetListAsync(predicate);
             var domainModelList = mapper.Map<IEnumerable<Domain.Model.Product>>(persistenceModelList);
 
             return domainModelList;

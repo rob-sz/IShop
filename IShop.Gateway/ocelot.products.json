@@ -29,6 +29,21 @@
       "QoSOptions": {
         "TimeoutValue": 360000
       }
+    },
+    {
+      "UpstreamPathTemplate": "/api/Products/Categories",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Products/Categories",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5010
+        }
+      ],
+      "QoSOptions": {
+        "TimeoutValue": 360000
+      }
     }
   ]
 }

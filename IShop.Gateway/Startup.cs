@@ -22,6 +22,15 @@ namespace IShop.Gateway
         {
             services.AddControllers();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
             services.AddOcelot();
         }
 
@@ -43,6 +52,8 @@ namespace IShop.Gateway
             {
                 endpoints.MapControllers();
             });
+
+            app.UseCors("CorsPolicy");
 
             app.UseOcelot().Wait();
         }
